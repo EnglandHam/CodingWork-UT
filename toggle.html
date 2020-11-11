@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #track{
+        width: 50px;
+        height: 25px;
+        background: #c1c1c1;
+        border: 1px solid #333;
+        border-radius: 100px;
+        box-shadow: 2px 2px 4px #333 inset;
+        cursor: pointer;
+    }
+    #switch{
+        width: 23px;
+        height: 23px;
+        border-radius: 100px;
+        background: linear-gradient(170deg, #555 0%, #999 100%);
+        border: 1px solid #fff;
+        box-shadow: 2px 1px 2px #333;
+    }
+    p, #track{
+        display: inline-block;
+        transition: all .25s;
+    }
+    p{transform: translateY(-8px);
+        color: #aaa;
+    }
+    .black{
+        color: #000;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<body>
+    <p id="off"> OFF</p>
+    <div id="track">
+        <div id="switch"></div>
+    </div>
+    <p id="on">ON</p>
+
+    <script>
+    $(document).ready(function(){
+        $('#off').addClass('black');
+        $('#track').click(toggle);
+
+        function toggle(){
+            //if switch is to the left, move it right 
+            if($('#switch').css('margin-left')=='0px'){
+                $('#switch').animate({marginLeft:'25px'}, 500, recolor);
+            }else{
+                //if switch is right, move it left 
+                $('#switch').animate({marginLeft:'0px'}, 500, recolor);
+            }
+        } //end of toggle function
+
+        function recolor(){
+            if($('#switch').css('margin-left')=='0px'){
+                $('#on').removeClass('black');
+                $('#off').addClass('black');
+                $('#track').css({background: '#c1c1c1'});
+        }else{
+            $('#off').removeClass('black');
+                $('#on').addClass('black');
+                $('#track').css({background: '#2e92f5'});
+        }
+        }
+    });
+    </script>
+</body>
+</html>
